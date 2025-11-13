@@ -1,0 +1,26 @@
+`timescale 1ns/1ps
+
+module And_Gate_TB ();
+  reg r_clk = 1'b0, r_bouncy = 1'b0;
+  wire w_debounced;
+  always #2 r_clk <= !r_clk;
+
+  debounced #(.DEBOUNCE_LIMIT(1)) UUT (
+      .i_clock  (r_clk),
+      .i_switch  (r_bouncy),
+      .o_filtered_switch (w_debounced)
+  );
+
+  initial begin
+    $dumpvars;
+    repeat(3) @(posedge r_clk);
+    r_bouncy <= 1'b1;
+    @(posedge r_clk);
+    //r_bouncy <= 1'b0;
+    @(posedge r_clk);
+    r_bouncy <= 1'b1;
+    repeat(6) @(posedge r_clk);
+    $finish;
+  end
+
+endmodule

@@ -1,0 +1,17 @@
+// Q = A * B + A
+
+module toggle_led (
+    input i_switch,
+    input i_clock,
+
+    output reg o_LED
+);
+  reg switch_previous_state = 1'b0;
+
+  always @(posedge i_clock) begin
+    if(switch_previous_state == 1'b1 && i_switch == 1'b0) begin
+      o_LED <= ~o_LED;
+    end
+    switch_previous_state = i_switch;
+  end
+endmodule
