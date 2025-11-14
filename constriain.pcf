@@ -1,9 +1,7 @@
-set_io o 1
+set_io o_led0 1
+set_io o_led1 2
+set_io o_led2 3
+set_io o_led3 4
 
-set_io i_data0 31
-set_io i_data1 32
-set_io i_data2 33
-set_io i_data3 34
-
-set_io i_sel0 38
-set_io i_sel1 37
+set_io i_switch 31
+set_io i_clock 94
